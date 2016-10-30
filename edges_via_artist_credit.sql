@@ -3,13 +3,14 @@
 --
 -- For example, the artist credit
 --     "Kanye West feat. RZA, Jay-Z, Pusha T, Swizz Beatz & CyHi da Prynce"
--- contains sixe artists (and therefore 6 choose 2 = 15 edges) who have
+-- contains six artists (and therefore 6 choose 2 = 15 edges) who have
 -- collaborated on a recording.
 --
--- Obviously, this method of finding collarations misses every collaborative
+-- Obviously, this method of finding collaborations misses every collaborative
 -- edge between members of a band because the band's artist credit only has
 -- the band's name, without the names of the individual band members without
--- collborated with each other.
+-- collborated with each other. For example, the edge (John Lennon, Ringo Starr)
+-- will be missed because their collaboration is credited simply as "The Beatles".
 
 WITH
 nodes AS ( -- Each row of this table has a "collaboration" and one of its "collaborators"
@@ -31,7 +32,7 @@ edges AS ( -- Cross-join the nodes table with itself and filter the result to fi
         node2.collaborator AS collaborator2
     FROM
         nodes AS node1
-    CROSS JOIN
+        CROSS JOIN
         nodes AS node2
     WHERE
         node1.collaboration = node2.collaboration
