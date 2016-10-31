@@ -8,9 +8,9 @@ print("Database opened successfully")
 
 # Sample query
 cursor.execute("""
-        SELECT *
-        FROM artist
-        LIMIT 10;
+    SELECT *
+    FROM artist
+    LIMIT 10;
 """)
 
 # Print out the table
