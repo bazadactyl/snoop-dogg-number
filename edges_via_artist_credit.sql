@@ -26,7 +26,7 @@ nodes AS ( -- Each row of this table has a "collaboration" and one of its "colla
     WHERE
         ac.artist_count > 1 -- Only look at collaborations with 2+ collaborators
 ),
-edges AS ( -- Cross-join the nodes table with itself and filter the result to find the edges
+edges_via_credit AS ( -- Cross-join the nodes table with itself and filter the result to find the edges
     SELECT DISTINCT ON (collaborator1, collaborator2)
         node1.collaborator AS collaborator1,
         node2.collaborator AS collaborator2
@@ -42,4 +42,5 @@ edges AS ( -- Cross-join the nodes table with itself and filter the result to fi
         node1.collaborator < node2.collaborator -- Avoid duplicate edges
 )
 
-SELECT * FROM edges;
+INSERT INTO edges (collaborator1, collaborator2)
+    SELECT * FROM edges_via_credit;
