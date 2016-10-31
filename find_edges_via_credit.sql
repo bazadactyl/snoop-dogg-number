@@ -1,16 +1,19 @@
--- This SQL query returns a table of collaboratie edges between artists
--- simply based on the "artist credit".
+-- This SQL query populates the edges table of collaboration edges between
+-- artists simply based on "artist credit".
 --
 -- For example, the artist credit
 --     "Kanye West feat. RZA, Jay-Z, Pusha T, Swizz Beatz & CyHi da Prynce"
 -- contains six artists (and therefore 6 choose 2 = 15 edges) who have
 -- collaborated on a recording.
 --
--- Obviously, this method of finding collaborations misses every collaborative
--- edge between members of a band because the band's artist credit only has
--- the band's name, without the names of the individual band members without
--- collborated with each other. For example, the edge (John Lennon, Ringo Starr)
--- will be missed because their collaboration is credited simply as "The Beatles".
+-- This method of finding collaborations misses every collaborative edge between
+-- members of a band because the band's artist credit only has the band's name,
+-- without the names of the individual band members withoutcollborated with each
+-- other. For example, the edge (John Lennon, Ringo Starr) will be missed because
+-- their collaboration is credited simply as "The Beatles". Furthermore, the
+-- results of this query incorrectly reports famous classical composers like
+-- Tchaikovsky or Bach as prolific collaborators because many recent orchestras
+-- have released albums where the credit includes a deceased composer.
 
 WITH
 nodes AS ( -- Each row of this table has a "collaboration" and one of its "collaborators"
@@ -43,4 +46,4 @@ edges_via_credit AS ( -- Cross-join the nodes table with itself and filter the r
 )
 
 INSERT INTO edges (collaborator1, collaborator2)
-    SELECT * FROM edges_via_credit;
+    SELECT collaborator1, collaborator2 FROM edges_via_credit;
