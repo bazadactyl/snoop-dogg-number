@@ -2,6 +2,7 @@
 
 import psycopg2
 
+# Connect to the MusicBrainz database
 connection = psycopg2.connect(database="musicbrainz", user="musicbrainz", password="", host="musicbrainz", port="5432")
 cursor = connection.cursor()
 print("Database opened successfully")
@@ -24,7 +25,7 @@ cursor.execute("""
 query = open("aggregate_collaborator_count.sql").read()
 cursor.execute(query)
 
-# Commit the changes
+# Commit the changes and close the connection
 connection.commit()
 connection.close()
 print("Done!")

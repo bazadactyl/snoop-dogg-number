@@ -38,13 +38,13 @@ print("Database opened successfully")
 # Initialize the graph
 graph = nx.Graph()
 
-# Fetch all edges from the database
+# Create a cursor in the database
 cursor.execute('''
     DECLARE db_cursor BINARY CURSOR FOR
         SELECT collaborator1, collaborator2 FROM edges;
 ''')
 
-# Incrementally populate the graph with edges
+# Incrementally populate the graph with edges using the database cursor
 while True:
     cursor.execute("FETCH 10000 FROM db_cursor")
     edges = cursor.fetchall()
