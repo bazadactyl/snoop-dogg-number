@@ -20,7 +20,7 @@ cursor.execute("""
 """)
 
 # Find edges via artist credit and populate the edges table
-query = open("find_nodes.sql").read()
+query = open("sql/find_nodes.sql").read()
 cursor.execute(query)
 
 # Commit the changes

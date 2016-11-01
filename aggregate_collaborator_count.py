@@ -22,7 +22,7 @@ cursor.execute("""
 """)
 
 # Populate the collaborator_count table
-query = open("aggregate_collaborator_count.sql").read()
+query = open("sql/aggregate_collaborator_count.sql").read()
 cursor.execute(query)
 
 # Commit the changes and close the connection

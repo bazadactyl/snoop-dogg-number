@@ -21,7 +21,7 @@ cursor.execute("""
 """)
 
 # Find edges via artist credit and populate the edges table
-query = open("edges_via_credit.sql").read()
+query = open("sql/edges_via_credit.sql").read()
 cursor.execute(query)
 
 # Commit the changes
