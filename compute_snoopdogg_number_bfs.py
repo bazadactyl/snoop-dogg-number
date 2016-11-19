@@ -1,9 +1,11 @@
 #!/usr/bin/python2
 
-# This script computes every artist's Snoop Dogg Number (and shortest path to Snoop Dogg) in less
-# than 30 seconds. This improves on the aggregate_snoopdogg_number_astar.py script which took a
-# whole 15 hours to do the same thing with the benefit of multiprocessing (this script is
-# single-threaded). Both were performed on the same machine with an i7-6700k.
+# This script computes every artist's Snoop Dogg Number (and shortest path to Snoop Dogg) by
+# performing a breadth-first traversal and computing the results in a single pass of the vertices.
+# This method can be applied to the graph because it is unweighted. This script is O(V + E).
+# I expect it to run in linear time for my purposes because the music collaboration graphs I use
+# are sparse and will never come close to being fully connected. This script took 20 seconds to
+# run on an i7-6700k.
 
 import psycopg2
 import networkx as nx

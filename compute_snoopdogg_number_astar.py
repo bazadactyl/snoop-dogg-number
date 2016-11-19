@@ -1,8 +1,12 @@
 #!/usr/bin/python3
 
-# This script computes every artist's Snoop Dogg Number in an awful 15 hours with an i7-6700k
-# despite being multi-threaded. Check out aggregate_snoopdogg_number_bfs.py for a quicker script
-# that took a mere 20 seconds to accomplish the same thing on the same machine.
+# This script computes every artist's Snoop Dogg Number by individually computing the shortest path
+# between Snoop Dogg and every other artist in the graph. As the name of this file suggests, I am
+# (naively) using the A-star algorithm implemented in the NetworkX library.
+#
+# As you might guess, this script is very, very slow. It took 15 hours to run on an i7-6700k despite
+# being multi-threaded. Check out compute_snoopdogg_number_bfs.py for a quicker script that took a
+# mere 20 seconds to accomplish the same thing on the same machine.
 
 import psycopg2
 import networkx as nx
