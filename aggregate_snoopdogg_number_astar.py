@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+# This script computes every artist's Snoop Dogg Number in an awful 15 hours with an i7-6700k
+# despite being multi-threaded. Check out aggregate_snoopdogg_number_bfs.py for a quicker script
+# that took a mere 20 seconds to accomplish the same thing on the same machine.
+
 import psycopg2
 import networkx as nx
 import math
