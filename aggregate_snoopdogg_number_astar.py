@@ -22,16 +22,12 @@ def prepare_database():
     cursor = connection.cursor()
     print("Database preparation started")
 
-    # Delete the old snoopdogg_number table
+    # Re-create the table
+    cursor.execute("DROP TABLE IF EXISTS snoopdogg_number_astar;")
     cursor.execute("""
-        DROP TABLE IF EXISTS snoopdogg_number;
-    """)
-
-    # Create new snoopdogg_number table
-    cursor.execute("""
-        CREATE TABLE snoopdogg_number (
-            artist TEXT NOT NULL,
-            sdn INTEGER NOT NULL,
+        CREATE TABLE snoopdogg_number_astar (
+            artist   TEXT    NOT NULL,
+            distance INTEGER NOT NULL,
             PRIMARY KEY(artist)
         );
     """)
@@ -65,7 +61,7 @@ def aggregate_sdn(range):
     cursor = connection.cursor()
     print(pname + ": Database opened successfully")
 
-    # Load the graph from disk
+    # Load graph from disk
     graph = nx.read_gml("graph/graph.gml")
 
     # Fetch the artists this worker process is responsible for
@@ -85,7 +81,7 @@ def aggregate_sdn(range):
         print(pname + ": " + artist_name + " " + str(sdn))
         cursor.execute("INSERT INTO snoopdogg_number VALUES (%s, %s)", (artist_name, sdn))
 
-    # Commit the changes and close the connection
+    # Apply changes from this worker to the database
     connection.commit()
     connection.close()
     print(pname + ": Done!")
@@ -97,6 +93,6 @@ if __name__ == '__main__':
     num_processes = 4
     tasks = split_tasks(num_tasks, num_processes)
 
-    # Create worker processes
+    # Spawn worker processes
     pool = multiprocessing.Pool(num_processes)
     pool.map(aggregate_sdn, tasks)
