@@ -1,11 +1,12 @@
 #!/usr/bin/python2
 
-# This script computes every artist's Snoop Dogg Number (and shortest path to Snoop Dogg) by
+# This script computes every artist's Snoop Dogg Number their shortest path to Snoop Dogg by
 # performing a breadth-first traversal and computing the results in a single pass of the vertices.
-# This method can be applied to the graph because it is unweighted. This script is O(V + E).
-# I expect it to run in linear time for my purposes because the music collaboration graphs I use
-# are sparse and will never come close to being fully connected. This script took 20 seconds to
-# run on an i7-6700k.
+# This method can be applied to the graph because it is unweighted.
+#
+# This script runs in O(V + E) as far as I know. If that's true, I expect it to run in linear time
+# for my purposes because the music collaboration graphs I'm working with are sparse and will never
+# come close to being fully connected. This script took 20 seconds to run on an i7-6700k.
 
 import psycopg2
 import networkx as nx
