@@ -8,12 +8,12 @@ print("Database opened successfully")
 
 # Delete the old edges table
 cursor.execute("""
-    DROP TABLE IF EXISTS edges;
+    DROP TABLE IF EXISTS unweighted_edges;
 """)
 
 # Create new edges table
 cursor.execute("""
-    CREATE TABLE edges (
+    CREATE TABLE unweighted_edges (
         collaborator1 TEXT NOT NULL,
         collaborator2 TEXT NOT NULL,
         PRIMARY KEY(collaborator1, collaborator2)
@@ -21,10 +21,10 @@ cursor.execute("""
 """)
 
 # Find edges via artist credit and populate the edges table
-query = open("sql/edges_via_credit.sql").read()
+query = open("sql/find_unweighted_edges_via_credit.sql").read()
 cursor.execute(query)
 
-# Commit the changes
+# Apply the changes to the database
 connection.commit()
 connection.close()
 print("Done!")

@@ -8,27 +8,27 @@ from networkx.readwrite import json_graph
 
 def write_json_nodelink(graph):
     node_link_data = json_graph.node_link_data(graph)
-    with open('graph/graph.nodelink.json', 'w') as outfile:
+    with open('graph/sdn-unweighted.nodelink.json', 'w') as outfile:
         json.dump(node_link_data, outfile, indent=2)
 
 def write_json_adjacency(graph):
     adjacency_data = json_graph.adjacency_data(graph)
-    with open('graph/graph.adjacency.json', 'w') as outfile:
+    with open('graph/sdn-unweighted.adjacency.json', 'w') as outfile:
         json.dump(adjacency_data, outfile, indent=2)
 
 def write_other_formats(graph):
-    nx.write_adjlist(graph, "graph/graph.adjlist", delimiter='||')
-    nx.write_multiline_adjlist(graph, "graph/graph.multi.adjlist", delimiter='||')
-    nx.write_edgelist(graph, "graph/graph.edgelist", delimiter='||')
-    nx.write_gexf(graph, "graph/graph.gexf")
-    nx.write_gml(graph, "graph/graph.gml")
-    nx.write_gml(graph, "graph/graph.gml.gz")
-    nx.write_gpickle(graph, "graph/graph.gpickle")
-    nx.write_graphml(graph, "graph/graph.graphml")
-    nx.write_yaml(graph, "graph/graph.yaml")
-    # nx.write_graph6(graph, "graph/graph.graph6") # https://github.com/networkx/networkx/issues/2295
-    nx.write_sparse6(graph, "graph/graph.sparse6")
-    nx.write_pajek(graph, "graph/graph.pajek")
+    nx.write_adjlist(graph, "graph/sdn-unweighted.adjlist", delimiter='||')
+    nx.write_multiline_adjlist(graph, "graph/sdn-unweighted.multi.adjlist", delimiter='||')
+    nx.write_edgelist(graph, "graph/sdn-unweighted.edgelist", delimiter='||')
+    nx.write_gexf(graph, "graph/sdn-unweighted.gexf")
+    nx.write_gml(graph, "graph/sdn-unweighted.gml")
+    nx.write_gml(graph, "graph/sdn-unweighted.gml.gz")
+    nx.write_gpickle(graph, "graph/sdn-unweighted.gpickle")
+    nx.write_graphml(graph, "graph/sdn-unweighted.graphml")
+    nx.write_yaml(graph, "graph/sdn-unweighted.yaml")
+    # nx.write_graph6(graph, "graph/sdn-unweighted.graph6") # https://github.com/networkx/networkx/issues/2295
+    nx.write_sparse6(graph, "graph/sdn-unweighted.sparse6")
+    nx.write_pajek(graph, "graph/sdn-unweighted.pajek")
 
 # Connect to the MusicBrainz database
 connection = psycopg2.connect(database="musicbrainz", user="musicbrainz", password="", host="musicbrainz", port="5432")
@@ -40,8 +40,8 @@ graph = nx.Graph()
 
 # Create a cursor in the database
 cursor.execute('''
-    DECLARE db_cursor BINARY CURSOR FOR
-        SELECT collaborator1, collaborator2 FROM edges;
+    DECLARE db_cursor CURSOR FOR
+        SELECT collaborator1, collaborator2 FROM unweighted_edges;
 ''')
 
 # Incrementally populate the graph with edges using the database cursor

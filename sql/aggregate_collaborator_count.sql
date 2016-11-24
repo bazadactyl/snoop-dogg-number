@@ -7,9 +7,9 @@ INSERT INTO collaborator_count (artist, count) (
         artist,
         count(*) AS count
     FROM (
-        SELECT collaborator1 AS artist FROM edges
+        SELECT collaborator1 AS artist FROM unweighted_edges
         UNION ALL
-        SELECT collaborator2 AS artist FROM edges
+        SELECT collaborator2 AS artist FROM unweighted_edges
     ) t
     GROUP BY artist
     ORDER BY count DESC
