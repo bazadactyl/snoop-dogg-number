@@ -53,6 +53,7 @@ while True:
         break
     else:
         graph.add_edges_from(edges)
+    print(nx.info(graph))
 
 # Write the graph to disk
 write_common_formats(graph)
