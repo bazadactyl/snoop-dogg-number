@@ -16,15 +16,16 @@ def write_json_adjacency(graph):
     with open('graph/sdn-weighted.adjacency.json', 'w') as outfile:
         json.dump(adjacency_data, outfile, indent=2)
 
+def write_common_formats(graph):
+    nx.write_gexf(graph, "graph/sdn-weighted.gexf")
+    nx.write_gml(graph, "graph/sdn-weighted.gml")
+    nx.write_graphml(graph, "graph/sdn-weighted.graphml")
+
 def write_other_formats(graph):
     nx.write_adjlist(graph, "graph/sdn-weighted.adjlist", delimiter='||')
     nx.write_multiline_adjlist(graph, "graph/sdn-weighted.multi.adjlist", delimiter='||')
     nx.write_edgelist(graph, "graph/sdn-weighted.edgelist", delimiter='||')
-    nx.write_gexf(graph, "graph/sdn-weighted.gexf")
-    nx.write_gml(graph, "graph/sdn-weighted.gml")
-    nx.write_gml(graph, "graph/sdn-weighted.gml.gz")
     nx.write_gpickle(graph, "graph/sdn-weighted.gpickle")
-    nx.write_graphml(graph, "graph/sdn-weighted.graphml")
     nx.write_yaml(graph, "graph/sdn-weighted.yaml")
     # nx.write_graph6(graph, "graph/sdn-weighted.graph6") # https://github.com/networkx/networkx/issues/2295
     nx.write_sparse6(graph, "graph/sdn-weighted.sparse6")
@@ -54,10 +55,8 @@ while True:
         graph.add_edge(e[0], e[1], weight=e[2])
     print(nx.info(graph))
 
-# Write the graph to disk in several formats
-write_json_nodelink(graph)
-write_json_adjacency(graph)
-write_other_formats(graph)
+# Write the graph to disk
+write_common_formats(graph)
 
 # Close the connection
 connection.close()

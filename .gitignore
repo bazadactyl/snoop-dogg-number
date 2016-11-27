@@ -1,5 +1,5 @@
 # Custom ignores
-graph/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
