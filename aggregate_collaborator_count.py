@@ -25,7 +25,7 @@ cursor.execute("""
 query = open("sql/aggregate_collaborator_count.sql").read()
 cursor.execute(query)
 
-# Commit the changes and close the connection
+# Apply the changes to the database
 connection.commit()
 connection.close()
 print("Done!")

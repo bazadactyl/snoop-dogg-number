@@ -35,14 +35,14 @@ connection = psycopg2.connect(database="musicbrainz", user="musicbrainz", passwo
 cursor = connection.cursor()
 print("Database opened successfully")
 
-# Initialize the graph
-graph = nx.Graph()
-
 # Create a cursor in the database
 cursor.execute('''
     DECLARE db_cursor CURSOR FOR
         SELECT collaborator1, collaborator2 FROM unweighted_edges;
 ''')
+
+# Initialize the undirected graph
+graph = nx.Graph()
 
 # Incrementally populate the graph with edges using the database cursor
 while True:

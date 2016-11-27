@@ -2,9 +2,9 @@
 
 # This script computes every artist's Snoop Dogg Number their shortest path to Snoop Dogg by
 # performing a breadth-first traversal and computing the results in a single pass of the vertices.
-# This method can be applied to the graph because it is unweighted.
+# This method can only be applied to the unweighted graph.
 #
-# This script runs in O(V + E) as far as I know. If that's true, I expect it to run in linear time
+# This script runs in O(|E|) as far as I know. If that's true, I expect it to run in linear time
 # for my purposes because the music collaboration graphs I'm working with are sparse and will never
 # come close to being fully connected. This script took 20 seconds to run on an i7-6700k.
 
@@ -14,7 +14,7 @@ import networkx as nx
 # Connect to the MusicBrainz database and load graph from disk
 connection = psycopg2.connect(database="musicbrainz", user="musicbrainz", password="", host="musicbrainz", port="5432")
 cursor = connection.cursor()
-graph = nx.read_gexf("graph/graph.gexf")
+graph = nx.read_gexf("graph/sdn-unweighted.gexf")
 
 # Prepare the database
 cursor.execute("DROP TABLE IF EXISTS snoopdogg_number_bfs;")
@@ -28,6 +28,7 @@ cursor.execute("""
 """)
 
 # Initialize dictionary with the Snoop Dogg as the base case
+# TODO: Create class for storing artists' SDN and path.
 sdn = {"Snoop Dogg" : (0, ["Snoop Dogg"])}
 
 # Traverse the graph breadth-first and compute every artist's Snoop Dogg Number in O(V + E)
@@ -41,6 +42,8 @@ for edge in nx.bfs_edges(graph, "Snoop Dogg"):
 # Insert the data via one long query - this is an order of magnitude faster than one query per row
 data_string = ','.join(cursor.mogrify('(%s,%s,%s)', (artist, sdn[artist][0], sdn[artist][1])) for artist in sdn) # mogrify requires python2
 cursor.execute('INSERT INTO snoopdogg_number_bfs VALUES ' + data_string)
+
+# TODO: Run query that adds all the artists from "nodes" table that have no path to Snoop Dogg.
 
 # Apply all changes to the database
 connection.commit()

@@ -23,7 +23,7 @@ cursor.execute("""
 query = open("sql/find_nodes.sql").read()
 cursor.execute(query)
 
-# Commit the changes
+# Apply the changes
 connection.commit()
 connection.close()
 print("Done!")

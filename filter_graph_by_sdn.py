@@ -5,11 +5,12 @@
 import psycopg2
 import networkx as nx
 
+# TODO: Create a class for storing artists' SDN and path to avoid doing this.
 SDN = 0
 PATH = 1
 
 # Load graph from disk
-graph = nx.read_gexf("graph/graph.gexf")
+graph = nx.read_gexf("graph/sdn-unweighted.gexf")
 
 # Initialize dictionary with the Snoop Dogg as the base case
 artists = {"Snoop Dogg" : (0, ["Snoop Dogg"])}
@@ -22,11 +23,8 @@ for edge in nx.bfs_edges(graph, "Snoop Dogg"):
    path_to_snoopdogg = artists[parent][PATH] + [child]
    artists[child] = (dist_to_snoopdogg, path_to_snoopdogg)
 
-print(nx.info(graph))
-exit()
-
 # Remove artists far from Snoop Dogg and save a separate graph for each iteration
-# TODO: Use comprehensions to simplify these loops.
+# TODO: Can I use comprehensions to simplify these loops?
 for sdn in [5, 4, 3, 2, 1]:
    distant_artists = []
    for a in artists:

@@ -48,8 +48,8 @@ if __name__ == '__main__':
    # Load graph from disk and generate random test data
    graph = nx.read_gexf("graph/graph.gexf")
    artists = nx.nodes(graph)
-   num_artists = nx.number_of_nodes(graph)
-   test_data = random_pairs(artists, 10000)
+   num_pairs = 1000
+   test_data = random_pairs(artists, num_pairs)
 
    # Select algorithms to benchmark
    algorithms = [nx.astar_path, nx.dijkstra_path, nx.shortest_path]

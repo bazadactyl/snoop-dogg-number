@@ -8,6 +8,8 @@
 # being multi-threaded. Check out compute_snoopdogg_number_bfs.py for a quicker script that took a
 # mere 20 seconds to accomplish the same thing on the same machine.
 
+# TODO: Use nx.shortest_path instead of nx.astar_path to make this faster.
+
 import psycopg2
 import networkx as nx
 import math
