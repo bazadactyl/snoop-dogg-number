@@ -1,9 +1,5 @@
 # The Snoop Dogg Number
 
-## Project Objective
-
-Searching for the Erdős of the music world through collaboration graphs.
-
 ## About
 
 I'm using the MusicBrainz database to investigate collaborative relationships between musicians.
