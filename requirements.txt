@@ -1,0 +1,4 @@
+decorator==4.3.0
+networkx==2.1
+numpy==1.15.1
+psycopg2==2.7.5
