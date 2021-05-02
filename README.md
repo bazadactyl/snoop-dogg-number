@@ -10,7 +10,7 @@ One of the questions I want to answer in this project is: who is the Erdős of t
 
 Another objective is to create a web interface to the collaboration graphs I'm generating. Users could traverse the graph and explore the relationships between musicians. Users would also be able to compute the distance between any two musicians.
 
-Check out [this slideshow](https://docs.google.com/presentation/d/1XPBdZAUYaJDz9-o_QmASU8lSTGbGSa0s2BBSBlFMKFM/edit?usp=sharing) I used to present my project to my class.
+Check out [this slideshow](https://drive.google.com/file/d/1ciw_Ry0p4SZ48DRqwGthwkv7mrgmBcGN/view) I used to present my project to my class.
 
 ## Recent Results
 
