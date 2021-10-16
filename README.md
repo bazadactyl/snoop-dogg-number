@@ -10,16 +10,10 @@ One of the questions I want to answer in this project is: who is the Erdős of t
 
 Another objective is to create a web interface to the collaboration graphs I'm generating. Users could traverse the graph and explore the relationships between musicians. Users would also be able to compute the distance between any two musicians.
 
-Check out [this slideshow](https://drive.google.com/file/d/1ciw_Ry0p4SZ48DRqwGthwkv7mrgmBcGN/view) I used to present my project to my class.
+## Results
 
-## Recent Results
+After running a layout algorithm on the collaboration graph, followed by a community finding algorithm, I was able to visualize the [community Snoop Dogg belongs to](presentation/communities_yifanhu_6.png).
 
-After running a layout algorithm on the collaboration graph, followed by a community finding algorithm, I was able to visualize the community Snoop Dogg belongs to.
+Check out the [slide deck](presentation/presentation.pdf) I presented to the class. You'll see the work I did to analyze the MusicBrainz database and visualize musical communities.
 
 ![Alt text](viz/communities_yifanhu_6.png?raw=true "Snoop Dogg's community")
-
-Using the "artist credit" proved to be the easiest way of finding collaboration edges between artists. However, the results are incorrectly skewed in favor of famous deceased composers. See `find_edges_via_credit.sql` to see the query that generated the edges that led to these results.
-
-![Alt text](collaborator_count.png?raw=true "Collaborator counts based on the artist credit method of finding edges")
-
-Things are looking good for this project's titular artist.
