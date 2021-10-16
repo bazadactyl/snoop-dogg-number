@@ -12,7 +12,9 @@ Another objective is to create a web interface to the collaboration graphs I'm g
 
 ## Results
 
-After running a layout algorithm on the collaboration graph, followed by a community finding algorithm, I was able to visualize the [community Snoop Dogg belongs to](presentation/communities_yifanhu_6.png).
+Surprisingly, I was right! Snoop Dogg is indeed the most collaborative music artist alive. In [this screenshot](collaborator_count.png) you'll see how many collaborators the top artists have. Putting aside dead classical composers (Bach, Mozart, and Beethoven) who have a high collaborator count due to orchestras playing their music in recent decades, Snoop is miles ahead of any of his contemporaries with 803 collaborators! Behind him in second place is Busta Rhymes with 549 and Lil Wayne with 548.
+
+After running a layout algorithm on the collaboration graph, followed by a community finding algorithm, I was able to visualize the [community Snoop Dogg belongs to](presentation/communities_yifanhu_6.png). Interestingly, Busta and Wayne are in a [different, and larger community](presentation/communities_yifanhu_1.png).
 
 Check out the [slide deck](presentation/presentation.pdf) I presented to the class. You'll see the work I did to analyze the MusicBrainz database and visualize musical communities.
 
